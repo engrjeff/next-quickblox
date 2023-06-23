@@ -12,6 +12,7 @@ module.exports = {
         foreground: "#1B2032",
         primary: "#3C54B4",
         muted: "#667085",
+        listactive: "#FFF5E9",
       },
     },
   },

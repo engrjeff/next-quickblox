@@ -16,7 +16,7 @@ export default function ChatAttachmentPreview({
         src={attachment.url}
         alt={attachment.id}
         width={100}
-        className="h-auto w-[100px] object-cover"
+        className="w-[100px] aspect-square object-cover"
       />
     );
   }
