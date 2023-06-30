@@ -6,7 +6,7 @@ function Header() {
   const { currentUser } = useQuickblox();
 
   return (
-    <header className="h-24 w-full shadow bg-white flex items-center justify-between px-20 z-10">
+    <header className="h-24 w-full border-b bg-white flex items-center justify-between px-20 z-10">
       <Image
         src="/colored_logo.png"
         alt="petpal asia"

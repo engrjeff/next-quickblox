@@ -39,7 +39,7 @@ export default function ChatMessages({
             chat.sender_id === currentUserId ? "self-end" : "self-start",
           )}
         >
-          <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center gap-5 justify-between mb-2">
             <span className="font-semibold">
               {chat.sender_id === currentUserId ? "You" : dialogName}
             </span>
@@ -47,26 +47,33 @@ export default function ChatMessages({
               {format(new Date(chat.created_at), "hh:mm a")}
             </span>
           </div>
-          {Boolean(chat.message) && (
-            <div
-              className={`p-4 shadow-sm rounded-lg inline-block ml-auto ${
-                chat.sender_id === currentUserId
-                  ? "bg-primary text-white rounded-bl-none"
-                  : "bg-white rounded-br-none"
-              }`}
-            >
-              <p>{chat.message}</p>
-            </div>
-          )}
-          {chat.attachments.length > 0 && (
-            <div className="mt-3 flex gap-3 flex-wrap">
-              {chat.attachments.map((attachment) => (
-                <div key={attachment.id}>
-                  <ChatAttachmentPreview attachment={attachment} />
-                </div>
-              ))}
-            </div>
-          )}
+          <div
+            className={cn(
+              "flex flex-col",
+              chat.sender_id === currentUserId ? "items-end" : "items-start",
+            )}
+          >
+            {Boolean(chat.message) && (
+              <div
+                className={`p-4 shadow-sm rounded-lg ${
+                  chat.sender_id === currentUserId
+                    ? "bg-primary text-white rounded-bl-none"
+                    : "bg-white rounded-br-none"
+                }`}
+              >
+                <p>{chat.message}</p>
+              </div>
+            )}
+            {chat.attachments.length > 0 && (
+              <div className="mt-3 flex gap-3 flex-wrap">
+                {chat.attachments.map((attachment) => (
+                  <div key={attachment.id}>
+                    <ChatAttachmentPreview attachment={attachment} />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       ))}
     </div>

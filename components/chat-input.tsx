@@ -64,7 +64,7 @@ export default function ChatInput({
           name: file.name,
           type: file.type,
           size: file.size,
-          public: false,
+          public: true,
         }));
 
         const uploadResult = await Promise.allSettled(
@@ -99,7 +99,7 @@ export default function ChatInput({
       const attachmentDataToSend = uploadedFiles.map((fileItem) => ({
         id: fileItem.uid,
         type: getFileType(fileItem.content_type),
-        url: Quickblox.content.privateUrl(fileItem.uid),
+        url: Quickblox.content.publicUrl(fileItem.uid),
       }));
 
       const messageData = {

@@ -25,9 +25,9 @@ export default function ChatAttachmentPreview({
     return (
       <video
         src={attachment.url}
-        width={200}
         controls
-        className="w-full aspect-video rounded-lg"
+        width={300}
+        className="w-[300px] aspect-video rounded-lg"
       >
         Your browser does not support the video tag
       </video>

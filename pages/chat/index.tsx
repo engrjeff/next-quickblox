@@ -2,8 +2,10 @@ import * as React from "react";
 import useQuickblox from "@/providers/quickblox-provider";
 import { Dialog } from "@/types/quickblox";
 import ChatView from "@/components/chat-view";
+import NoQueueView from "@/components/no-queue-view";
 import Header from "@/components/header";
 import ChatSessionListItem from "@/components/chat-session-list-item";
+import RenderIf from "@/components/render-if";
 
 const ChatPage = () => {
   const { currentUser, dialogs } = useQuickblox();
@@ -24,7 +26,7 @@ const ChatPage = () => {
     <>
       <Header />
       <main className="relative">
-        <div className="fixed top-24 mt-1 inset-y-0 w-[360px] bg-white border-r">
+        <div className="fixed top-24 inset-y-0 w-[360px] bg-white border-r">
           <div className="py-4">
             <h2 className="text-muted font-medium px-4 mb-4">Chat Sessions</h2>
             <ul className="space-y-2">
@@ -45,7 +47,12 @@ const ChatPage = () => {
         </div>
         <div className="pl-[360px]">
           <div className="h-[calc(100vh-96px)]">
-            <ChatView dialog={selectedDialog} key={selectedDialog?._id} />
+            <RenderIf condition={Boolean(selectedDialog)}>
+              <ChatView dialog={selectedDialog} key={selectedDialog?._id} />
+            </RenderIf>
+            <RenderIf condition={dialogs.length === 0}>
+              <NoQueueView />
+            </RenderIf>
           </div>
         </div>
       </main>
